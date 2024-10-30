@@ -37,7 +37,7 @@ GLM-4-Voice 由三个部分组成：
 git clone --recurse-submodules https://github.com/THUDM/GLM-4-Voice
 cd GLM-4-Voice
 ```
-然后安装依赖。
+然后安装依赖。也可以使用我们提供的镜像 `zhipuai/glm-4-voice:0.1` 以跳过这一步。
 ```shell
 pip install -r requirements.txt
 ```
@@ -45,6 +45,7 @@ pip install -r requirements.txt
 
 ```shell
 # git 模型下载，请确保已安装 git-lfs
+git lfs install
 git clone https://huggingface.co/THUDM/glm-4-voice-decoder
 ```
 
