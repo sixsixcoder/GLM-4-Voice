@@ -51,13 +51,19 @@ git clone https://huggingface.co/THUDM/glm-4-voice-decoder
 python model_server.py --host localhost --model-path THUDM/glm-4-voice-9b --port 10000 --dtype bfloat16 --device cuda:0
 ```
 
-If you need to launch with Int4 precision, run
+If you want to use Int4 precision, run:
 
 ```shell
 python model_server.py --host localhost --model-path THUDM/glm-4-voice-9b --port 10000 --dtype int4 --device cuda:0
 ```
 
-This command will automatically download `glm-4-voice-9b`. If network conditions are poor, you can manually download it and specify the local path using `--model-path`.
+Alternatively, you can use vLLM to start the model server (Int4 inference is not supported). Run the following command:
+
+```shell
+python vllm_model_server.py --host localhost --model-path THUDM/glm-4-voice-9b --port 10000 --dtype bfloat16 --device cuda:0
+```
+
+These commands will automatically download `glm-4-voice-9b`. If network conditions are poor, download it manually and specify the local path using `--model-path`.
 
 2. Start the web service
 
@@ -66,6 +72,7 @@ python web_demo.py --tokenizer-path  THUDM/glm-4-voice-tokenizer --model-path TH
 ```
 
 You can access the web demo at [http://127.0.0.1:8888](http://127.0.0.1:8888).
+
 This command will automatically download `glm-4-voice-tokenizer` and `glm-4-voice-9b`. Please note that `glm-4-voice-decoder` needs to be downloaded manually.
 If the network connection is poor, you can manually download these three models and specify the local paths using `--tokenizer-path`, `--flow-path`, and `--model-path`.
 

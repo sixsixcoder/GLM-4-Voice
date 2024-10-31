@@ -56,14 +56,19 @@ git clone https://huggingface.co/THUDM/glm-4-voice-decoder
 ```shell
 python model_server.py --host localhost --model-path THUDM/glm-4-voice-9b --port 10000 --dtype bfloat16 --device cuda:0
 ```
-
-如果你需要使用 Int4 精度启动，请运行
+如果你需要使用 Int4 精度启动，请运行:
 
 ```shell
 python model_server.py --host localhost --model-path THUDM/glm-4-voice-9b --port 10000 --dtype int4 --device cuda:0
 ```
 
-此命令会自动下载 `glm-4-voice-9b`。如果网络条件不好，也手动下载之后通过 `--model-path` 指定本地的路径。
+你也也以使用 vLLM 启动模型服务(不支持Int4推理)，运行以下代码:
+
+```shell
+python vllm_model_server.py --host localhost --model-path THUDM/glm-4-voice-9b --port 10000 --dtype bfloat16 --device cuda:0
+```
+
+这些命令会自动下载 `glm-4-voice-9b`。如果网络条件不好，也手动下载之后通过 `--model-path` 指定本地的路径。
 
 2. 启动 web 服务
 

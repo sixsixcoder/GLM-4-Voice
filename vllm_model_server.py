@@ -3,7 +3,9 @@ A model worker with vllm libs executes the model.
 
 Run BF16 inference with:
 
-python ≈.py --host localhost --model-path THUDM/glm-4-voice-9b --port 10000 --dtype bfloat16 --device cuda:0
+python vllm_model_server.py --host localhost --model-path THUDM/glm-4-voice-9b --port 10000 --dtype bfloat16 --device cuda:0
+
+Not Supported Int4 inference.
 
 """
 import argparse
@@ -64,11 +66,9 @@ class ModelWorker:
         engine_args = AsyncEngineArgs(
             model=model_path,
             tokenizer=model_path,
-            # 如果你有多张显卡，可以在这里设置成你的显卡数量
             tensor_parallel_size=1,
             dtype=dtype,
             trust_remote_code=True,
-            # 占用显存的比例，请根据你的显卡显存大小设置合适的值，例如，如果你的显卡有80G，您只想使用24G，请按照24/80=0.3设置
             gpu_memory_utilization=0.9,
             enforce_eager=True,
             worker_use_ray=False,
