@@ -70,7 +70,7 @@ class ModelWorker:
             tensor_parallel_size=1,
             dtype=dtype,
             trust_remote_code=True,
-            gpu_memory_utilization=0.9,
+            gpu_memory_utilization=0.5,
             enforce_eager=True,
             worker_use_ray=False,
             disable_log_requests=True,
