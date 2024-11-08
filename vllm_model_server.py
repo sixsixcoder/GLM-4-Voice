@@ -66,6 +66,7 @@ class ModelWorker:
         engine_args = AsyncEngineArgs(
             model=model_path,
             tokenizer=model_path,
+            device=device,
             tensor_parallel_size=1,
             dtype=dtype,
             trust_remote_code=True,
